@@ -13,18 +13,188 @@
     />
   </head>
   <body>
+    <!-- Header with title -->
     <nav class="navbar navbar-dark bg-dark">
       <!-- Navbar content -->
       <h1 style="margin: auto; color: azure">Weather Dashboard</h1>
     </nav>
-    <!-- <div class="page-header">
-      <h1>Weather Dashboard</h1>
-    </div> -->
-    <!-- <div class="container">
-      <div class="jumbotron">
-        <h1>Weather Dashboard</h1>
+
+    <div class="row" style="margin-left: 10px; margin-right: 10px">
+      <div class="col-4" style="background-color: lightgray">
+        <h2>Search for a City:</h2>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder=""
+            aria-label="City Search"
+            aria-describedby="button-addon2"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="searchBtn"
+            >
+              Button
+            </button>
+          </div>
+        </div>
+        <div class="list-group">
+          <button
+            type="button"
+            class="list-group-item list-group-item-action active"
+          >
+            Austin
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            Chicago
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            New York
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            Orlando
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            disabled
+          >
+            San Fransisco
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            disabled
+          >
+            Seattle
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            disabled
+          >
+            Denver
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            disabled
+          >
+            Atlanta
+          </button>
+        </div>
       </div>
-    </div> -->
+      <div class="col-8" style="background-color: bisque">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h3 class="display-4" id="overview">Atlanta (8/15/2019)</h3>
+            <p class="lead" id="temperature">Temperature: 90.9F</p>
+            <p class="lead" id="humidity">Humidity: 41%</p>
+            <p class="lead" id="wind-speed">Wind Speed: 4.7 MPH</p>
+            <p class="lead" id="uv-index">UV Index: 9.49</p>
+          </div>
+        </div>
+        <h4>5-Day Forecast:</h4>
+        <div class="row row-cols-2.5">
+          <div class="col">
+            <div
+              class="card text-white bg-primary mb-3"
+              style="max-width: 18rem"
+            >
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="card text-white bg-primary mb-3"
+              style="max-width: 18rem"
+            >
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="card text-white bg-primary mb-3"
+              style="max-width: 18rem"
+            >
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="card text-white bg-primary mb-3"
+              style="max-width: 18rem"
+            >
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="card text-white bg-primary mb-3"
+              style="max-width: 18rem"
+            >
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- left side aside -->
+    <!-- search for city title -->
+    <!-- input city search box and search button-->
+    <!-- list of past searched cities  -->
+
+    <!-- MAIN SECTION -->
+    <!-- current weather section -->
+    <!-- Title (City Name, Current Date, Weather indication icon) -->
+    <!-- temperature with inserted temp -->
+    <!-- humidity with inserted humidity -->
+    <!-- Wind Speed with inserted Wind Speed -->
+    <!-- uv index with inserted uv index -->
+
+    <!-- 5 day forecast section -->
+    <!-- title -->
+    <!-- 5 individual cards for the each day -->
+    <!-- date, weather indication icon, temperature, humidity -->
+
     <!-- JS, Popper.js, and jQuery -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
