@@ -32,7 +32,7 @@
           <div class="input-group-append">
             <button
               class="btn btn-outline-secondary"
-              type="button"
+              type="search"
               id="searchBtn"
             >
               Search
@@ -177,7 +177,7 @@
         console.log(userInput);
         console.log(searchQuery);
       });
-
+      console.log(userInput);
       $.ajax({
         url: searchQuery,
         method: 'GET',
@@ -196,16 +196,17 @@
         // $('#oneHumidity').text(
         //   'Humidity: ' + response.list[3].main.humidity + '%'
         // );
-
+        var dayCounter = 3;
         $('.card-body').each(function (index) {
           console.log(this);
           console.log(index);
+          console.log(dayCounter);
           //   create new h5 element Date
           var forecastDate = $('<h5>');
           //add bootstrap class card-title
           forecastDate.attr('class', 'card-title');
           //   add the Date for the day in the element
-          forecastDate.text(response.list[3].dt_txt);
+          forecastDate.text(response.list[dayCounter].dt_txt);
           //   place the Temperature element on the card
           $(this).append(forecastDate);
           //   create new image element Icon
@@ -222,17 +223,22 @@
           //   create new paragraph element Temperature
           var forecastTemp = $('<p>');
           //   add the Temperature for the day in the element
-          forecastTemp.text('Temp: ' + response.list[3].main.temp + ' F');
+          forecastTemp.text(
+            'Temp: ' + response.list[dayCounter].main.temp + ' F'
+          );
           //   place the Temperature element on the card
           $(this).append(forecastTemp);
           //   create new paragraph element humidity
           var forecastHumidity = $('<p>');
           //   add the humidity for the day in the element
           forecastHumidity.text(
-            'Humidity: ' + response.list[3].main.humidity + '%'
+            'Humidity: ' + response.list[dayCounter].main.humidity + '%'
           );
           //   place the humidity element on the card
           $(this).append(forecastHumidity);
+          //   dayCounter next day
+          dayCounter += 8;
+          console.log(dayCounter);
         });
       });
     </script>
