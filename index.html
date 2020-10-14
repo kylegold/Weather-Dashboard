@@ -26,9 +26,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder=""
-            aria-label="City Search"
-            aria-describedby="button-addon2"
+            placeholder="City Name"
+            id="searchInput"
           />
           <div class="input-group-append">
             <button
@@ -36,7 +35,7 @@
               type="button"
               id="searchBtn"
             >
-              Button
+              Search
             </button>
           </div>
         </div>
@@ -90,10 +89,10 @@
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
             <h3 class="display-4" id="overview">Atlanta (8/15/2019)</h3>
-            <p class="lead" id="temperature">Temperature: 90.9F</p>
-            <p class="lead" id="humidity">Humidity: 41%</p>
-            <p class="lead" id="wind-speed">Wind Speed: 4.7 MPH</p>
-            <p class="lead" id="uv-index">UV Index: 9.49</p>
+            <p class="lead">Temperature: <span id="temperature">90.9F</span></p>
+            <p class="lead">Humidity: <span id="humidity">41%</span></p>
+            <p class="lead">Wind Speed: <span id="wind-speed">4.7 MPH</span></p>
+            <p class="lead">UV Index: <span id="uv-index">9.49</span></p>
           </div>
         </div>
         <h4>5-Day Forecast:</h4>
@@ -103,14 +102,7 @@
               class="card text-white bg-primary mb-3"
               style="max-width: 18rem"
             >
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
+              <div class="card-body" id="dayOne"></div>
             </div>
           </div>
           <div class="col">
@@ -118,14 +110,7 @@
               class="card text-white bg-primary mb-3"
               style="max-width: 18rem"
             >
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
+              <div class="card-body"></div>
             </div>
           </div>
           <div class="col">
@@ -133,14 +118,7 @@
               class="card text-white bg-primary mb-3"
               style="max-width: 18rem"
             >
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
+              <div class="card-body"></div>
             </div>
           </div>
           <div class="col">
@@ -148,14 +126,7 @@
               class="card text-white bg-primary mb-3"
               style="max-width: 18rem"
             >
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
+              <div class="card-body"></div>
             </div>
           </div>
           <div class="col">
@@ -163,14 +134,7 @@
               class="card text-white bg-primary mb-3"
               style="max-width: 18rem"
             >
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-              </div>
+              <div class="card-body"></div>
             </div>
           </div>
         </div>
@@ -194,7 +158,84 @@
     <!-- title -->
     <!-- 5 individual cards for the each day -->
     <!-- date, weather indication icon, temperature, humidity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      var APIKey = '&appid=539ba6935abc1ad16228a9ba65d616ed';
+      var userInput = 'New York';
+      var query = 'https://api.openweathermap.org/data/2.5/forecast?q=';
+      var units = '&units=imperial';
+      var searchQuery = query + userInput + units + APIKey;
+      var queryURL =
+        'https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&units=imperial&appid=' +
+        APIKey;
+      var forcastQueryURL =
+        'https://api.openweathermap.org/data/2.5/forecast?q=Bujumbura,Burundi&units=imperial&appid=' +
+        APIKey;
 
+      $('#searchBtn').click(function () {
+        userInput = $('#searchInput').val().split(' ').join('%20');
+        console.log(userInput);
+        console.log(searchQuery);
+      });
+
+      $.ajax({
+        url: searchQuery,
+        method: 'GET',
+      }).then(function (response) {
+        console.log(queryURL);
+        console.log(response);
+        $('#overview').text(response.city.name);
+        $('#temperature').text(response.list[3].main.temp + ' F');
+        $('#humidity').text(response.list[3].main.humidity + '%');
+        $('#wind-speed').text(response.list[3].wind.speed + ' MPH');
+        $('#uv-index').text();
+        console.log(response.list[3].dt_txt);
+        // $('#oneDate').text(response.list[3].dt_txt);
+        // $('#oneIcon').attr('src', response.list[3].weather[0].icon);
+        // $('#oneTemp').text('Temp: ' + response.list[3].main.temp + ' F');
+        // $('#oneHumidity').text(
+        //   'Humidity: ' + response.list[3].main.humidity + '%'
+        // );
+
+        $('.card-body').each(function (index) {
+          console.log(this);
+          console.log(index);
+          //   create new h5 element Date
+          var forecastDate = $('<h5>');
+          //add bootstrap class card-title
+          forecastDate.attr('class', 'card-title');
+          //   add the Date for the day in the element
+          forecastDate.text(response.list[3].dt_txt);
+          //   place the Temperature element on the card
+          $(this).append(forecastDate);
+          //   create new image element Icon
+          var forecastIcon = $('<img>');
+          //   add source for the weather icon in the image element
+          forecastIcon.attr('src', 'https://img.icons8.com/ios/452/cloud.png');
+          //   add alt tag
+          forecastIcon.attr('alt', 'cloudy');
+          //   add style height and width
+          forecastIcon.css('height', '30px');
+          forecastIcon.css('width', '30px');
+          //   place the Icon image element on the card
+          $(this).append(forecastIcon);
+          //   create new paragraph element Temperature
+          var forecastTemp = $('<p>');
+          //   add the Temperature for the day in the element
+          forecastTemp.text('Temp: ' + response.list[3].main.temp + ' F');
+          //   place the Temperature element on the card
+          $(this).append(forecastTemp);
+          //   create new paragraph element humidity
+          var forecastHumidity = $('<p>');
+          //   add the humidity for the day in the element
+          forecastHumidity.text(
+            'Humidity: ' + response.list[3].main.humidity + '%'
+          );
+          //   place the humidity element on the card
+          $(this).append(forecastHumidity);
+        });
+      });
+    </script>
     <!-- JS, Popper.js, and jQuery -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
